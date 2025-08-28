@@ -15,12 +15,15 @@ module "security_group" {
 	public_subnet_cidr = "10.0.1.0/24"
 }
 
-module "ec2_public" {
+module "ec2" {
 	source = "./modules/ec2"
 	project_name = var.project_name
 	ami_id = "ami-00ca32bbc84273381"
 	instance_type = "t2.micro"
-	subnet_id = module.vpc.public_subnet_id
-	security_group_id = module.security_group.public_sg_id
+	public_subnet_id = module.vpc.public_subnet_id
+	private_subnet_id = module.vpc.private_subnet_id
+	public_sg_id = module.security_group.public_sg_id
+	private_sg_id = module.security_group.private_sg_id
 	key_name = "my-key-pair"
 }
+
