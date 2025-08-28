@@ -14,3 +14,13 @@ module "security_group" {
 	my_ip = "138.0.116.30/32"
 	public_subnet_cidr = "10.0.1.0/24"
 }
+
+module "ec2_public" {
+	source = "./modules/ec2"
+	project_name = var.project_name
+	ami_id = "ami-00ca32bbc84273381"
+	instance_type = "t2.micro"
+	subnet_id = module.vpc.public_subnet_id
+	security_group_id = module.security_group.public_sg_id
+	key_name = "my-key-pair"
+}
