@@ -1,0 +1,26 @@
+# Ignorar archivos de Terraform en todos los proyectos
+**/.terraform/
+**/.terraform/*
+**/*.tfstate
+**/*.tfstate.*
+**/*.tfvars
+**/*.tfvars.json
+
+# Archivos de bloqueo
+**/.terraform.lock.hcl
+
+# Archivos de crash logs
+**/crash.log
+**/crash.*.log
+
+# Archivos de override (locales, no compartidos)
+**/*_override.tf
+**/*_override.tf.json
+**/override.tf
+**/override.tf.json
+
+# Archivos sensibles (si los manejas aparte)
+**/secrets.auto.tfvars
+**/*.pem
+**/*.key
+**/*.crt
