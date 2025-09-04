@@ -1,7 +1,18 @@
 resource "aws_s3_bucket" "site" {
   bucket = var.bucket_name
-
   tags = var.tags
+}
+
+resource "aws_s3_bucket_website_configuration" "site" {
+  bucket = aws_s3_bucket.site.id
+
+  index_document {
+	suffix = "index.html"
+  }
+
+  error_document {
+	key = "index.html"
+  }
 }
 
 resource "aws_s3_bucket_versioning" "site_versioning" {
