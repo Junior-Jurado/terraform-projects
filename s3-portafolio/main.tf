@@ -35,3 +35,31 @@ module "cloudfront" {
   acm_certificate_arn = module.acm.certified_arn
   price_class = "PriceClass_100"
 }
+
+# Politica de acceso: Bloquear acceso público ya lo hicimos; ahora se activa la politica para permitir a CloudFront acceso (servicio Principal)
+# acceder solo si la peticion viene desde la distribucion concreta (condicion AWS:SourceArn)
+
+resource "aws_s3_bucket_policy" "allow_cloudfront" {
+	bucket = module.s3.bucket_name
+
+	policy = jsonencode({
+		Version = "2012-10-17"
+		Statement = [
+			{
+				Sid = "AllowCloudFrontServicePrincipalReadOnly"
+				Effect = "Allow"
+				Principal = {
+					Service = "cloudfront.amazonaws.com"
+				}
+				Action = "s3:GetObject"
+				Resource = "${module.s3.bucket_arn}/*"
+				Condition = {
+					StringEquals = {
+						"AWS:SourceArn" = module.cloudfront.distribution_arn
+					}
+				}
+			}
+		]
+	})
+  
+}
