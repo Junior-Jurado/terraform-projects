@@ -10,16 +10,11 @@ variable "project_name" {
 
 variable "domain_name" {
   type        = string
-  description = "Dominio raíz (ej:GermanJurado.cloud)"
+  description = "Dominio raíz (ej:example.cloud)"
 }
 
 variable "subdomain" {
   type        = string
   description = "Subdominio (ej: www). vacio para apex"
   default     = "www"
-}
-
-variable "hosted_zone_name" {
-  type        = string
-  description = "Nombre de la Hosted Zone Pública (ej: GermanJurado.com.)"
 }

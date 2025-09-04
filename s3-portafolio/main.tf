@@ -12,17 +12,26 @@ module "s3" {
   }
 }
 
-module "route53" {
-  source = "./modules/route53"
-  domain_name = var.domain_name
+
+data "aws_route53_zone" "existing" {
+  name         = var.domain_name
+  private_zone = false
 }
 
 module "acm" {
-	source = "./modules/acm"
-	fqdn = local.fqdn
-	zone_id = module.route53.zone_id
-	
-	providers = {
-	  aws = aws.us_east_1
-	}
+  source  = "./modules/acm"
+  fqdn    = local.fqdn
+  zone_id = data.aws_route53_zone.existing.zone_id
+
+  providers = {
+    aws = aws.us_east_1
+  }
+}
+
+module "cloudfront" {
+  source              = "./modules/cloudfront"
+  bucket_domain_name  = module.s3.bucket_domain_name
+  aliases             = [local.fqdn]
+  acm_certificate_arn = module.acm.certified_arn
+  price_class = "PriceClass_100"
 }
