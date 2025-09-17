@@ -34,6 +34,12 @@ variable "db_name" {
   default = "appdb"
 }
 
+variable "db_port" {
+  description = "Puerto de la base de datos"
+  type = number
+  default = 5432
+}
+
 variable "private_subnet_ids" {
   description = "IDs de las subnets privadas donde se ubicará el RDS"
   type = list(string)

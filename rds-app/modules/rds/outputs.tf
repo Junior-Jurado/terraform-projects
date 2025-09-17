@@ -13,3 +13,13 @@ output "db_password" {
   value = random_password.db_password.result
   sensitive = true
 }
+
+output "db_port" {
+  description = "Puerto de la base de datos"
+  value = var.db_port
+}
+
+output "db_name" {
+	description = "Nombre de la base de datos"
+	value = var.db_name
+}

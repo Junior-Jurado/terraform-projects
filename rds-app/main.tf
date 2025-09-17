@@ -32,6 +32,16 @@ module "rds" {
   project_name       = var.project_name
   private_subnet_ids = [module.vpc.private_subnet_id]
   private_sg_id      = module.security_group.private_sg_id
+}
 
+module "secrets_manager" {
+  source = "./modules/secrets-manager"
+  project_name = var.project_name
+
+  db_username = module.rds.db_username
+  db_password = module.rds.db_password
+  db_host = module.rds.db_endpoint
+  db_port = module.rds.db_port
+  db_name = module.rds.db_name
 }
 
