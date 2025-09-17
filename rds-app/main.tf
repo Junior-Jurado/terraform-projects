@@ -15,6 +15,11 @@ module "security_group" {
   public_subnet_cidr = "10.0.1.0/24"
 }
 
+module "iam" {
+	source = "./modules/iam"
+	project_name = var.project_name
+}
+
 module "ec2" {
   source            = "./modules/ec2"
   project_name      = var.project_name
@@ -25,6 +30,8 @@ module "ec2" {
   public_sg_id      = module.security_group.public_sg_id
   private_sg_id     = module.security_group.private_sg_id
   key_name          = "my-key-pair"
+
+  iam_instance_profile = module.iam.ec2_instance_profile_name
 }
 
 module "rds" {
@@ -44,4 +51,5 @@ module "secrets_manager" {
   db_port = module.rds.db_port
   db_name = module.rds.db_name
 }
+
 
