@@ -46,3 +46,29 @@ output "private_ec2_private_ip" {
   description = "IP privada de la EC2 privada"
   value       = module.ec2.private_ec2_private_ip
 }
+
+# ========================
+# RDS
+# ========================
+output "db_endpoint" {
+  description = "Endpoint del RDS"
+  value       = module.rds.db_endpoint
+}
+
+output "db_port" {
+  description = "Puerto del RDS"
+  value       = module.rds.db_port
+}
+
+output "db_name" {
+  description = "Nombre de la base de datos"
+  value       = module.rds.db_name
+}
+
+# ========================
+# CloudWatch
+# ========================
+output "cloudwatch_log_group" {
+  description = "Log Group donde se envían los logs de la app"
+  value       = module.cloudwatch.log_group_name
+}

@@ -52,4 +52,9 @@ module "secrets_manager" {
   db_name = module.rds.db_name
 }
 
+module "cloudwatch" {
+  source = "./modules/cloudwatch"
+  project_name = var.project_name
+  retention_in_days = 1
+}
 

@@ -12,3 +12,12 @@ output "private_ec2_private_ip" {
   description = "IP privada de la EC2 privada"
   value       = aws_instance.private_ec2.private_ip
 }
+
+output "public_ec2_id" {
+  value = aws_instance.public_ec2.id
+}
+
+output "public_ec2_profile" {
+  value = var.iam_instance_profile
+}
+
