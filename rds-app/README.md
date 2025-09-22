@@ -38,6 +38,7 @@ Este proyecto despliega una infraestructura completa en **AWS** utilizando **Ter
 ---
 
 ## 📂 Estructura del proyecto
+```bash
 terraform-projects/
 │── modules/
 │ ├── vpc/ # VPC, subredes, IGW, NAT, tablas de ruteo
@@ -53,6 +54,7 @@ terraform-projects/
 │── main.tf # Orquestación principal
 │── variables.tf # Definición de variables
 │── outputs.tf # Outputs exportados
+```
 
 ---
 
