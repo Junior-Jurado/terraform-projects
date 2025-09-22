@@ -1,20 +1,20 @@
 output "vpc_id" {
   description = "ID de la VPC creada"
-  value = aws_vpc.this.id
+  value       = aws_vpc.this.id
 }
 
 output "public_subnet_id" {
   description = "ID de la Subnet Publica"
-  value = aws_subnet.public.id
+  value       = aws_subnet.public.id
 }
 
-output "private_subnet_id" {
-	description = "ID de la Subnet Privada"
-	value = aws_subnet.private.id
+output "private_subnet_ids" {
+  description = "IDs de la Subnets Privadas"
+  value       = aws_subnet.private[*].id
 }
 
 output "public_route_table_id" {
-	value = aws_route_table.public.id
+  value = aws_route_table.public.id
 }
 
 output "private_route_table_id" {

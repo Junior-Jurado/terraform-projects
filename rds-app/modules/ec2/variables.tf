@@ -29,11 +29,6 @@ variable "public_sg_id" {
   type        = string
 }
 
-variable "private_sg_id" {
-  description = "ID del Security Group para la EC2 privada"
-  type        = string
-}
-
 variable "key_name" {
   description = "Nombre de la key pair para SSH"
   type        = string
@@ -41,6 +36,32 @@ variable "key_name" {
 
 variable "iam_instance_profile" {
   description = "IAM instance profile name to attach to the EC2"
-  type = string
-  default = null
+  type        = string
+}
+
+# Variables para conectarse y configurar la base de datos
+variable "db_username" {
+  type        = string
+  description = "Usuario administrador de la base de datos"
+}
+
+variable "db_password" {
+  type        = string
+  sensitive   = true
+  description = "Contraseña de la base de datos"
+}
+
+variable "db_endpoint" {
+  type        = string
+  description = "Endpoint del RDS PostgreSQL"
+}
+
+variable "db_name" {
+  type        = string
+  description = "Nombre de la base de datos"
+}
+
+variable "db_port" {
+  type        = number
+  description = "Puerto del RDS PostgreSQL"
 }
