@@ -1,0 +1,6 @@
+No te sabes la ip 
+Prueba en Linux/Mac/WSL
+curl ifconfig.me
+
+Prueba en Windows
+
